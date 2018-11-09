@@ -13,13 +13,16 @@ import tableStyle from "assets/jss/material-dashboard-react/components/tableStyl
 
 function CustomTable({ ...props }) {
   const { classes, tableHead, tableData, tableHeaderColor, dataLength, rowsPerPage, page } = props;
+  //console.log("dataLength", dataLength, 'rowsPerpage', rowsPerPage, 'page', page);
 
   let handleChangePage = (event, page) => {
-    this.setState({ page });
+    //this.setState({ page });
+    console.log("to be continue handleChangePage");
   };
 
   let handleChangeRowsPerPage = event => {
-    this.setState({ rowsPerPage: event.target.value });
+    //this.setState({ rowsPerPage: event.target.value });
+    console.log("to be continue handleChangeRowsPerpage");
   };
 
 
@@ -72,8 +75,8 @@ function CustomTable({ ...props }) {
           nextIconButtonProps={{
             'aria-label': 'Next Page',
           }}
-          //onChangePage={this.handleChangePage}
-          //onChangeRowsPerPage={this.handleChangeRowsPerPage}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
         />
         ) : null
     }
