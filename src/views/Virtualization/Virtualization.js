@@ -57,6 +57,7 @@ class Virtualization extends React.Component {
     super(props);
     this.state = {
       anchorEl: null,
+      openLEMSTable: false,
     };
 
     this.tableHead = ["ID", "Name", "Country", "City", "Salary"];
@@ -87,6 +88,7 @@ class Virtualization extends React.Component {
   handleClick =  event => {
     this.setState({
       anchorEl: event.currentTarget,
+      openLEMSTable: true,
     });
   };
 
@@ -96,12 +98,19 @@ class Virtualization extends React.Component {
     });
   };
 
+  handleTableStatus = (status) => {
+    this.setState({
+      openLEMSTable: status,
+    })
+  };
+
 
 
   render() {
     const { classes } = this.props;
-    const { anchorEl } = this.state;
+    const { anchorEl, openLEMSTable } = this.state;
     const open = Boolean(anchorEl);
+    console.log("openLEMSTable", openLEMSTable);
 
     return (
       <GridContainer>
@@ -112,7 +121,7 @@ class Virtualization extends React.Component {
               <h4 className={classes.cardTitleWhite}>
                 Table on Plain Background
               </h4>
-              <Icon color="red" onClick={this.handleClick}>
+              <Icon color="primary" onClick={this.handleClick}>
                   add_circle
               </Icon>
               
@@ -131,22 +140,8 @@ class Virtualization extends React.Component {
               />
             </CardBody>
           </Card>
-          <Popover
-            id="simple-popper"
-            open={open}
-            anchorEl={anchorEl}
-            onClose={this.handleClose}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
-            }}
-          >
-          <LEMSCreator />
-          </Popover>
+          {openLEMSTable ? <LEMSCreator openLEMSTable={openLEMSTable}  handleTableStatus={this.handleTableStatus}/> : null}
+          
         </GridItem>
         
       </GridContainer>
