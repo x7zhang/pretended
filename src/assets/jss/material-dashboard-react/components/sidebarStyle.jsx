@@ -157,8 +157,12 @@ const sidebarStyle = theme => ({
     fontSize: "14px",
     color: "#FFFFFF"
   },
+  nestMenu: {
+    marginLeft: theme.spacing.unit * 4,
+    fontSize: "14px",
+  },
   whiteFont: {
-    color: "#FFFFFF"
+    color: "#FFFFFF",
   },
   purple: {
     backgroundColor: primaryColor,
