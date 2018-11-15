@@ -28,7 +28,9 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
+    width: '100%'
   },
+ 
 });
 
 
@@ -51,6 +53,66 @@ const currencies = [
   },
 ];
 
+const sizeList = [
+  
+  {
+    value: 'TIB',
+    label: 'TB',
+  },
+
+  {
+    value: 'GIB',
+    label: 'GB',
+  },
+
+  {
+    value: 'MIB',
+    label: 'MB',
+  }
+];
+
+const selectorSizeList = [
+  {
+    value: '478',
+    label: '478',
+  },
+  
+  {
+    value: '225',
+    label: '225',
+  },
+
+  {
+    value: '126',
+    label: '126',
+  },
+];
+
+
+const flagList = [
+  {
+    value: 'excutive 1',
+    label: 'EXT 1',
+  },
+  {
+    value: 'excutive 2',
+    label: 'EXT 2',
+  },
+];
+
+const assignList = [
+  {
+    value: 'Yes',
+    label: '----Yes----',
+  },
+
+  {
+    value: 'No',
+    label: '----No----',
+  }
+];
+
+ 
 
 class LEMSCreator extends React.Component {
   constructor(props) {
@@ -91,27 +153,31 @@ class LEMSCreator extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <DialogTitle id="form-dialog-title">CREATE LEMS</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              To subscribe to this website, please enter your email address here. We will send
-              updates occasionally.
             </DialogContentText>
+
+
             <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Email Address"
-              type="email"
-              fullWidth
+              id="outlined-number"
+              label="LEMS NAME"
+              //value="LEMS NAME"
+              onChange={this.handleChange('age')}
+              //type="number"
+              className={classes.textField}
               InputLabelProps={{
                 shrink: true,
               }}
+              margin="normal"
+              variant="outlined"
             />
+
+       
             <TextField
               id="outlined-number"
-              label="Number"
-              value={this.state.age}
+              label="QUANTITY"
+              value="LEMS QUANTITY"
               onChange={this.handleChange('age')}
               type="number"
               className={classes.textField}
@@ -121,12 +187,82 @@ class LEMSCreator extends React.Component {
               margin="normal"
               variant="outlined"
             />
+
+            <TextField
+              id="outlined-number"
+              label="SIZE"
+              value="SIZE"
+              onChange={this.handleChange('age')}
+              type="number"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
+              //variant="outlined"
+            />
+          
+            <TextField
+              id="size-selection"
+              select
+              //label="SIZE"
+              className={classes.textField}
+              value={this.state.currency}
+              onChange={this.handleChange('currency')}
+              fullWidth
+              SelectProps={{
+                native: true,
+                MenuProps: {
+                  className: classes.menu,
+                },
+              }}
+              //helperText="   pleasnse"
+              margin="normal"
+              //variant="outlined"
+            >
+              {sizeList.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </TextField>
+
+          
             <TextField
               id="outlined-select-currency-native"
               select
-              //label="Native select"
+              label="SELECTOR SIZE"
               className={classes.textField}
-              value={this.state.currency}
+              value="SELECTOR SIZE"
+              onChange={this.handleChange('currency')}
+              SelectProps={{
+                native: true,
+                MenuProps: {
+                  className: classes.menu,
+                },
+              }}
+              //helperText="Select"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
+              variant="outlined"
+            >
+              {selectorSizeList.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </TextField>
+
+
+           
+            <TextField
+              id="outlined-select-currency-native"
+              select
+              label="FLAG"
+              className={classes.textField}
+              value="OPERATING SYSTEM FLAG"
               onChange={this.handleChange('currency')}
               SelectProps={{
                 native: true,
@@ -138,45 +274,37 @@ class LEMSCreator extends React.Component {
               margin="normal"
               variant="outlined"
             >
-              {currencies.map(option => (
+              {flagList.map(option => (
                 <option key={option.value} value={option.value}>
                   {option.label}
                 </option>
               ))}
             </TextField>
+
+          
             <TextField
-          id="outlined-name"
-          label="Name"
-          className={classes.textField}
-          value="Cat in the Hat"
-          //onChange={this.handleChange('name')}
-          margin="normal"
-          variant="outlined"
-        />
-            <TextField
-              id="standard-with-placeholder"
-              label="With placeholder"
-              placeholder="Placeholder"
+              id="outlined-select-currency-native"
+              select
+              label="AASIGN TO VM"
               className={classes.textField}
+              value="ASSIGN TO VM"
+              onChange={this.handleChange('currency')}
+              SelectProps={{
+                native: true,
+                MenuProps: {
+                  className: classes.menu,
+                },
+              }}
+              //helperText="Please select your currency"
               margin="normal"
               variant="outlined"
-            />
-            <TextField
-              id="standard-with-placeholder"
-              label="With placeholder"
-              placeholder="Placeholder"
-              className={classes.textField}
-              margin="normal"
-              variant="outlined"
-            />
-            <TextField
-              id="standard-with-placeholder"
-              label="With placeholder"
-              placeholder="Placeholder"
-              className={classes.textField}
-              margin="normal"
-              variant="outlined"
-            />
+            >
+              {assignList.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </TextField>
 
           </DialogContent>
           <DialogActions>
@@ -184,7 +312,7 @@ class LEMSCreator extends React.Component {
               Cancel 
             </Button>
             <Button onClick={this.handleClose} color="primary">
-              Subscribe
+              Create
             </Button>
           </DialogActions>
         </Dialog>

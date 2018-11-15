@@ -19,10 +19,21 @@ function Header({ ...props }) {
   function makeBrand() {
     var name;
     props.routes.map((prop, key) => {
-      if (prop.path === props.location.pathname) {
-        name = prop.navbarName;
+      if (prop.subComponent) {
+        prop.subComponent.map((ele, key) => {
+          if (ele.path === props.location.pathname) {
+            name = ele.navbarName;
+          } 
+        })
       }
-      return null;
+      else {
+        if (prop.path === props.location.pathname) {
+          name = prop.navbarName;
+        }
+        return null;
+      }
+
+      
     });
     return name;
   }

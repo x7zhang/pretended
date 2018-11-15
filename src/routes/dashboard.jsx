@@ -5,6 +5,7 @@ import Person from "@material-ui/icons/Person";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import BubbleChart from "@material-ui/icons/BubbleChart";
 import LocationOn from "@material-ui/icons/LocationOn";
+import Send from "@material-ui/icons/Send";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views
@@ -16,6 +17,10 @@ import Icons from "views/Icons/Icons.jsx";
 import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 import Virtualization from "views/Virtualization/Virtualization.js";
+
+import LEMS from "views/Virtualization/LEMS.js";
+import RTM from "views/Virtualization/RTM.js";
+
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 
 const dashboardRoutes = [
@@ -24,65 +29,107 @@ const dashboardRoutes = [
     sidebarName: "Dashboard",
     navbarName: "Material Dashboard",
     icon: Dashboard,
-    component: DashboardPage
+    component: DashboardPage,
+    subComponent: null,
   },
   {
     path: "/user",
     sidebarName: "User Profile",
     navbarName: "Profile",
     icon: Person,
-    component: UserProfile
+    component: UserProfile,
+    subComponent: null,
   },
   {
     path: "/table",
     sidebarName: "Table List",
     navbarName: "Table List",
     icon: "content_paste",
-    component: TableList
+    component: TableList,
+    subComponent: null,
   },
   {
     path: "/typography",
     sidebarName: "Typography",
     navbarName: "Typography",
     icon: LibraryBooks,
-    component: Typography
+    component: Typography,
+    subComponent: null,
   },
   {
     path: "/icons",
     sidebarName: "Icons",
     navbarName: "Icons",
     icon: BubbleChart,
-    component: Icons
+    component: Icons,
+    subComponent: null,
   },
   {
     path: "/maps",
     sidebarName: "Maps",
     navbarName: "Map",
     icon: LocationOn,
-    component: Maps
+    component: Maps,
+    subComponent: null,
   },
   {
     path: "/notifications",
     sidebarName: "Notifications",
     navbarName: "Notifications",
     icon: Notifications,
-    component: NotificationsPage
+    component: NotificationsPage,
+    subComponent: null,
   },
   {
     path: "/upgrade-to-pro",
     sidebarName: "Upgrade To PRO",
     navbarName: "Upgrade To PRO",
     icon: Unarchive,
-    component: UpgradeToPro
+    component: UpgradeToPro,
+    subComponent: null,
   },
   {
-    path: "/virtualization", 
+    path: "/virtualizations", 
     sidebarName: "Virtualization",
     navbarName: "Virtualization",
     icon: BubbleChart,
-    component: Virtualization
+    component: LEMS,
+    subComponent: [
+      {
+        path: "/virtualizations/rtm",
+        sidebarName: "RTM",
+        navbarName: "RTM",
+        icon: Send,
+        component: RTM,
+      },
+
+      {
+        path: "/virtualizations/lems",
+        sidebarName: "LEMS",
+        navbarName: "LEMS",
+        icon: Send,
+        component: LEMS,
+      },
+
+      {
+        path: "/virtualizations/vm",
+        sidebarName: "VM",
+        navbarName: "VM",
+        icon: Send,
+        component: LEMS
+      },
+      
+    ]
 
   },
+  {
+    path: "/virtualization/lems/detail",
+    sidebarName: "LEMS",
+    navbarName: "LEMS",
+    icon: Send,
+    component: LEMS
+  },
+
   { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
 ];
 
